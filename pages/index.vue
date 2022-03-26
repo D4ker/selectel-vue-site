@@ -9,12 +9,16 @@ export default {
 </script>
 
 <style lang="scss">
+html {
+  font-family: Manrope, sans-serif;
+}
+
 body {
-  font-family: 'Manrope', sans-serif;
+  font-weight: $font-medium;
 }
 
 .container {
   width: 100%;
-  max-width: $container-size;
+  max-width: $container-width;
 }
 </style>

@@ -33,25 +33,30 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
 
-.header {
-  display: flex;
-  justify-content: center;
-}
+  .header {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    height: $header-height;
+    min-width: 100vw;
+    background-color: $header-bg;
+  }
 
-.main {
-  flex-grow: 1;
-}
+  .main {
+    flex-grow: 1;
+    margin-top: $header-height;
+  }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  background-color: #092433;
+  .footer {
+    display: flex;
+    justify-content: center;
+    background-color: $footer-bg;
+  }
 }
 </style>

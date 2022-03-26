@@ -1,66 +1,133 @@
 <template>
-  <div class="footer__container container">
-    <div class="footer__logo">
-      <a href="/">Selectel</a>
+  <div class="footer-container container">
+    <div class="footer-info">
+      <div class="footer-info__logo">
+        <a href="/">
+          <img src="~/assets/img/selectel-logo-footer.svg" alt="Selectel">
+        </a>
+      </div>
+      <div class="footer-info__copyright">
+        <p>© ООО «Селектел», 2008—2022</p>
+        <p>
+          Лицензия на телематические
+          <br>
+          услуги №176267
+        </p>
+      </div>
     </div>
-    <div class="footer__copyright">
-      <p>Copyright</p>
+    <div class="footer-menu">
+      <ul class="footer-nav">
+        <li class="footer-nav__item">
+          <a href="/">Серверы</a>
+        </li>
+        <li class="footer-nav__item">
+          <a href="/">Оборудование</a>
+        </li>
+        <li class="footer-nav__item">
+          <a href="/">Дата-центры</a>
+        </li>
+        <li class="footer-nav__item">
+          <a href="/">Блог</a>
+        </li>
+        <li class="footer-nav__item">
+          <a href="/">Облако</a>
+        </li>
+        <li class="footer-nav__item">
+          <a href="/">Решения</a>
+        </li>
+        <li class="footer-nav__item">
+          <a href="/">О компании</a>
+        </li>
+        <li class="footer-nav__item">
+          <a href="/">Офисы</a>
+        </li>
+      </ul>
+      <ul class="footer-socials">
+        <li class="footer-socials__item">
+          <a href="https://t.me/selectel">
+            <img src="~/assets/img/telegram.svg" alt="Telegram">
+          </a>
+        </li>
+        <li class="footer-socials__item">
+          <a href="https://www.facebook.com/selectel">
+            <img src="~/assets/img/facebook.svg" alt="Facebook">
+          </a>
+        </li>
+        <li class="footer-socials__item">
+          <a href="https://vk.com/selectel">
+            <img src="~/assets/img/vk.svg" alt="VK">
+          </a>
+        </li>
+        <li class="footer-socials__item">
+          <a href="https://twitter.com/selectel">
+            <img src="~/assets/img/twitter.svg" alt="Twitter">
+          </a>
+        </li>
+        <li class="footer-socials__item">
+          <a href="https://habr.com/ru/company/selectel">
+            <img src="~/assets/img/habr.svg" alt="Habr">
+          </a>
+        </li>
+      </ul>
     </div>
-    <div class="footer-nav">
-
-    </div>
-    <ul class="footer-socials">
-      <li class="footer-socials__item">
-        Telegram
-      </li>
-      <li class="footer-socials__item">
-        Facebook
-      </li>
-      <li class="footer-socials__item">
-        VK
-      </li>
-      <li class="footer-socials__item">
-        Twitter
-      </li>
-      <li class="footer-socials__item">
-        Habr
-      </li>
-    </ul>
   </div>
 </template>
 
 <style lang="scss">
-.footer__container {
+.footer-container {
   display: grid;
-  grid-template-areas: "footer-logo . footer-nav footer-nav footer-nav footer-nav"
-                        "footer-copyright . footer-socials . . .";
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat(6, 1fr);
-  height: 321px;
-  padding: 0 138px;
-}
+  grid-template-areas: "footer-info footer-menu";
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  height: $footer-height;
+  padding: $footer-padding;
 
-.footer__logo {
-  grid-area: footer-logo;
-}
+  .footer-info {
+    grid-area: footer-info;
+    display: flex;
+    width: $footer-info-width;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
 
-.footer-nav {
-  grid-area: footer-nav;
-}
+    .footer-info__copyright {
+      font-weight: $font-regular;
+      color: $footer-copyright-color;
+      opacity: $footer-copyright-opacity;
 
-.footer__copyright {
-  grid-area: footer-copyright;
-}
+      p {
+        @include reset-margins;
+      }
+    }
+  }
 
-.footer-socials {
-  grid-area: footer-socials;
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-}
+  .footer-menu {
+    grid-area: footer-menu;
+    display: grid;
+    height: 100%;
+    grid-template-areas: "footer-nav footer-nav footer-nav footer-nav"
+                          "footer-socials . . .";
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 
-.footer-socials__item {
-  box-sizing: border-box;
-  color: aliceblue;
+    .footer-nav {
+      grid-area: footer-nav;
+      display: grid;
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
+
+      @include reset-link-color($footer-nav-color);
+      @include reset-list;
+    }
+
+    .footer-socials {
+      grid-area: footer-socials;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      @include reset-list;
+    }
+  }
 }
 </style>

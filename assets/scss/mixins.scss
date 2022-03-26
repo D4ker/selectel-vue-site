@@ -1,0 +1,18 @@
+@mixin reset-margins {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin reset-list {
+  @include reset-margins;
+  list-style: none;
+}
+
+@mixin reset-link-color($color, $opacity: 100%) {
+  a {
+    color: $color;
+    opacity: $opacity;
+    background-color: transparent;
+    text-decoration: none;
+  }
+}
