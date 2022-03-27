@@ -1,10 +1,24 @@
 <template>
   <div class="cards-container">
     <div class="cards-filter">
-
+      <div class="cards-filter-container cards-sub-container">
+        <a-select class="cards-filter-author"
+                  placeholder="Выберите автора"
+                  :getPopupContainer="trigger => trigger.parentNode"
+                  @change="handleChange">
+          <a-icon slot="suffixIcon" type="user" />
+          <a-select-option v-for="userId in 10" v-bind:value="(Math.random(userId) + 1).toString(36).substring(7)">
+            {{(Math.random(userId) + 1).toString(36).substring(7)}}
+          </a-select-option>
+        </a-select>
+        <a-range-picker class="cards-filter-range"
+                        :placeholder="['От', 'До']"
+                        :getCalendarContainer="trigger => trigger.parentNode"
+                        @change="onChange" />
+      </div>
     </div>
-    <div class="cards-list">
-      <a-card v-for="n in 9" class="cards__item" title="Заголовок карточки">
+    <div class="cards-list cards-sub-container">
+      <a-card v-for="cardId in 9" class="cards__item" title="Заголовок карточки">
         <p>Задайте любой вопрос о продукте, его настройках,
           трудностях в работе или неполадках.
           Поддержка работает 24/7, специалисты ответят
@@ -19,13 +33,50 @@
   </div>
 </template>
 
+<script>
+export default {
+  methods: {
+    handleChange(value) {
+      console.log(`selected ${value}`);
+    },
+    onChange(date, dateString) {
+      console.log(date, dateString);
+    }
+  },
+};
+</script>
+
 <style scoped lang="scss">
 .cards-container {
   margin: 60px auto;
 
+  .cards-sub-container {
+    width: $cards-container-width;
+    margin: 0 auto;
+  }
+
   .cards-filter {
+    position: sticky;
+    top: $header-height - 0.1px;
+    z-index: 2;
+    font-weight: $font-regular;
     height: $cards-filter-height;
     background-color: $cards-filter-bg;
+
+    .cards-filter-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      column-gap: 20px;
+
+      .cards-filter-author {
+        width: 295px;
+      }
+
+      .cards-filter-range {
+        width: 331px;
+      }
+    }
   }
 
   .cards-list {
@@ -34,7 +85,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     width: $cards-container-width;
-    margin: 24px auto 0 auto;
+    margin-top: 24px;
 
     .cards__item {
       width: 295px;

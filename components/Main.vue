@@ -40,9 +40,8 @@ export default {
   min-height: 100vh;
 
   .header {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
     width: 100%;
     height: $header-height;
     z-index: 999;
@@ -51,7 +50,6 @@ export default {
 
   .main {
     flex-grow: 1;
-    margin-top: $header-height;
   }
 
   .footer {

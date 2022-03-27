@@ -77,8 +77,9 @@
 .footer-container {
   display: grid;
   grid-template-areas: "footer-info footer-menu";
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: auto 1fr;
   align-items: center;
+  gap: 268px;
   height: $footer-height;
   padding: $footer-padding;
 
