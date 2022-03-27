@@ -36,7 +36,6 @@
     position: absolute;
     bottom: 0;
     margin: 0 0 100px 258px;
-
     color: white;
 
     .carousel-title {

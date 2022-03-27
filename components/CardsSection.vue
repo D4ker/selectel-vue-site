@@ -3,7 +3,9 @@
     <div class="cards-filter">
       <div class="cards-filter-container cards-sub-container">
         <a-select class="cards-filter-author"
+                  mode="multiple"
                   placeholder="Выберите автора"
+                  :size="'large'"
                   :getPopupContainer="trigger => trigger.parentNode"
                   @change="handleChange">
           <a-icon slot="suffixIcon" type="user" />
@@ -12,6 +14,7 @@
           </a-select-option>
         </a-select>
         <a-range-picker class="cards-filter-range"
+                        :size="'large'"
                         :placeholder="['От', 'До']"
                         :getCalendarContainer="trigger => trigger.parentNode"
                         @change="onChange" />
@@ -59,6 +62,8 @@ export default {
     position: sticky;
     top: $header-height - 0.1px;
     z-index: 2;
+    display: flex;
+    align-items: center;
     font-weight: $font-regular;
     height: $cards-filter-height;
     background-color: $cards-filter-bg;
@@ -71,10 +76,25 @@ export default {
 
       .cards-filter-author {
         width: 295px;
+
+        ::v-deep .ant-select-selection--multiple {
+          height: 40px;
+          overflow-x: auto;
+        }
       }
 
       .cards-filter-range {
         width: 331px;
+
+        ::v-deep .ant-calendar-picker-input {
+          .ant-calendar-range-picker-input {
+            text-align: left;
+          }
+
+          .ant-calendar-range-picker-separator {
+            margin-right: 10px;
+          }
+        }
       }
     }
   }
