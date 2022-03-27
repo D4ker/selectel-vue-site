@@ -18,6 +18,7 @@
   grid-template-areas: "header-logo header-contacts";
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
+  height: 100%;
   padding: $header-padding;
 
   .header__logo {

@@ -20,5 +20,6 @@ body {
 .container {
   width: 100%;
   max-width: $container-width;
+  margin: 0 auto;
 }
 </style>

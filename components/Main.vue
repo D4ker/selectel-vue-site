@@ -41,10 +41,11 @@ export default {
 
   .header {
     position: fixed;
-    display: flex;
-    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: $header-height;
-    min-width: 100vw;
+    z-index: 999;
     background-color: $header-bg;
   }
 
@@ -54,8 +55,7 @@ export default {
   }
 
   .footer {
-    display: flex;
-    justify-content: center;
+    width: 100%;
     background-color: $footer-bg;
   }
 }
