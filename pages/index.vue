@@ -1,22 +1,27 @@
 <template>
-  <Main/>
+  <div class="main-container">
+    <section class="carousel">
+      <Carousel/>
+    </section>
+    <section class="cards">
+      <CardsSection/>
+    </section>
+  </div>
 </template>
 
 <script>
+import Carousel from '@/components/Carousel';
+import CardsSection from '@/components/CardsSection';
+
 export default {
-  name: 'IndexPage'
+  components: {
+    Carousel,
+    CardsSection
+  }
 }
 </script>
 
 <style lang="scss">
-html {
-  font-family: Manrope, sans-serif;
-}
-
-body {
-  font-weight: $font-medium;
-}
-
 .container {
   width: 100%;
   max-width: $container-width;

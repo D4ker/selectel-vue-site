@@ -73,7 +73,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .footer-container {
   display: grid;
   grid-template-areas: "footer-info footer-menu";

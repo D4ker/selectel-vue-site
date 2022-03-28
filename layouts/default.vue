@@ -4,12 +4,7 @@
       <Header/>
     </header>
     <main class="main">
-      <section class="carousel">
-        <Carousel/>
-      </section>
-      <section class="cards">
-        <CardsSection/>
-      </section>
+      <nuxt/>
     </main>
     <footer class="footer">
       <Footer/>
@@ -19,21 +14,25 @@
 
 <script>
 import Header from '@/components/Header';
-import Carousel from '@/components/Carousel';
-import CardsSection from '@/components/CardsSection';
 import Footer from '@/components/Footer';
 
 export default {
   components: {
     Header,
-    Carousel,
-    CardsSection,
     Footer
   }
 }
 </script>
 
 <style lang="scss">
+html {
+  font-family: Manrope, sans-serif;
+
+  body {
+    font-weight: $font-medium;
+  }
+}
+
 .layout {
   display: flex;
   flex-direction: column;

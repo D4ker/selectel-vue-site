@@ -5,6 +5,7 @@
         <a-select class="cards-filter-author"
                   mode="multiple"
                   placeholder="Выберите автора"
+                  showArrow="false"
                   :size="'large'"
                   :getPopupContainer="trigger => trigger.parentNode"
                   @change="handleChange">
@@ -78,8 +79,12 @@ export default {
         width: 295px;
 
         ::v-deep .ant-select-selection--multiple {
-          height: 40px;
+          height: 41px;
           overflow-x: auto;
+
+          .ant-select-arrow {
+            margin-right: 5px;
+          }
         }
       }
 

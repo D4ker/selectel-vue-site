@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .header-container {
   display: grid;
   grid-template-areas: "header-logo header-contacts";
