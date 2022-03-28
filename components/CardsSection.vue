@@ -26,7 +26,7 @@
         <div class="card-body">
           <p>{{ upFirstLetter(card.body) }}</p>
           <div class="badges-container">
-            <a-badge class="card-name" :count="authors[+card.userId - 1].name"/>
+            <a-badge class="card-author" :count="card.author"/>
             <a-badge class="card-date" :count="card.date.format"/>
           </div>
         </div>
@@ -49,24 +49,22 @@ export default {
     this.authors = await this.$axios.$get('https://jsonplaceholder.typicode.com/users');
 
     this.cards = await this.$axios.$get('https://jsonplaceholder.typicode.com/posts');
-    this.cards.forEach(card => card.date = generateRandomDate(new Date(2008, 7, 8).getTime()));
+    this.cards.forEach(card => {
+      card.author = this.authors[+card.userId - 1].name;
+      card.date = generateRandomDate(new Date(2008, 7, 8).getTime());
+    });
   },
   computed: {
     filteredCards() {
-      console.log(!!this.authorsFilter.length);
-      console.log(!!this.datesFilter.length);
       if (!this.authorsFilter.length && !this.datesFilter.length) {
-        console.log(1);
         return this.cards;
-      } else if (this.authorsFilter.length && this.datesFilter.length) {
-        console.log(2);
-        return this.cards.filter(card => this.authorsFilter.includes(+card.userId) &&
-          (card.date.time >= this.datesFilter[0] && card.date.time <= this.datesFilter[1]));
-      } else if (this.authorsFilter.length || this.datesFilter.length) {
-        console.log(3);
-        return this.cards.filter(card => this.authorsFilter.includes(+card.userId) ||
-          (card.date.time >= this.datesFilter[0] && card.date.time <= this.datesFilter[1]));
       }
+      return this.cards.filter(card => {
+        const isFilteredAuthor = this.authorsFilter.includes(+card.userId);
+        const isDateInFilteredRange = card.date.time >= this.datesFilter[0] && card.date.time <= this.datesFilter[1];
+        return (isFilteredAuthor && isDateInFilteredRange) || (isFilteredAuthor && !this.datesFilter.length) ||
+          (!this.authorsFilter.length && isDateInFilteredRange);
+      });
     }
   },
   methods: {
@@ -186,7 +184,7 @@ function generateRandomDate(startTime) {
           justify-content: flex-start;
           gap: 10px;
 
-          .card-name {
+          .card-author {
             ::v-deep .ant-badge-count {
               background: #092433;
             }
