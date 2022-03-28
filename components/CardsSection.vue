@@ -5,32 +5,30 @@
         <a-select class="cards-filter-author"
                   mode="multiple"
                   placeholder="Выберите автора"
-                  showArrow="false"
+                  :showArrow="true"
                   :size="'large'"
                   :getPopupContainer="trigger => trigger.parentNode"
                   @change="handleChange">
-          <a-icon slot="suffixIcon" type="user" />
-          <a-select-option v-for="userId in 10" v-bind:value="(Math.random(userId) + 1).toString(36).substring(7)">
-            {{(Math.random(userId) + 1).toString(36).substring(7)}}
+          <a-icon slot="suffixIcon" type="user"/>
+          <a-select-option v-for="author of authors" :key="author.id" :value="author.id">
+            {{ author.name }}
           </a-select-option>
         </a-select>
         <a-range-picker class="cards-filter-range"
                         :size="'large'"
                         :placeholder="['От', 'До']"
                         :getCalendarContainer="trigger => trigger.parentNode"
-                        @change="onChange" />
+                        @change="onChange"/>
       </div>
     </div>
     <div class="cards-list cards-sub-container">
-      <a-card v-for="cardId in 9" class="cards__item" title="Заголовок карточки">
-        <p>Задайте любой вопрос о продукте, его настройках,
-          трудностях в работе или неполадках.
-          Поддержка работает 24/7, специалисты ответят
-          в течение 15 минут и помогут со всем разобраться.
-        </p>
-        <div class="badges-container">
-          <a-badge class="card-name" count="Василий Пупкин"/>
-          <a-badge class="card-date" count="24 февраля 2022"/>
+      <a-card v-for="card of filteredCards" :key="card.id" class="cards-list__item" :title="upFirstLetter(card.title)">
+        <div class="card-body">
+          <p>{{ upFirstLetter(card.body) }}</p>
+          <div class="badges-container">
+            <a-badge class="card-name" :count="authors[+card.userId - 1].name"/>
+            <a-badge class="card-date" :count="card.date.format"/>
+          </div>
         </div>
       </a-card>
     </div>
@@ -38,16 +36,64 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
-  methods: {
-    handleChange(value) {
-      console.log(`selected ${value}`);
-    },
-    onChange(date, dateString) {
-      console.log(date, dateString);
+  data: () => ({
+    authors: [],
+    cards: [],
+    authorsFilter: [],
+    datesFilter: []
+  }),
+  async mounted() {
+    this.authors = await this.$axios.$get('https://jsonplaceholder.typicode.com/users');
+
+    this.cards = await this.$axios.$get('https://jsonplaceholder.typicode.com/posts');
+    this.cards.forEach(card => card.date = generateRandomDate(new Date(2008, 7, 8).getTime()));
+  },
+  computed: {
+    filteredCards() {
+      console.log(!!this.authorsFilter.length);
+      console.log(!!this.datesFilter.length);
+      if (!this.authorsFilter.length && !this.datesFilter.length) {
+        console.log(1);
+        return this.cards;
+      } else if (this.authorsFilter.length && this.datesFilter.length) {
+        console.log(2);
+        return this.cards.filter(card => this.authorsFilter.includes(+card.userId) &&
+          (card.date.time >= this.datesFilter[0] && card.date.time <= this.datesFilter[1]));
+      } else if (this.authorsFilter.length || this.datesFilter.length) {
+        console.log(3);
+        return this.cards.filter(card => this.authorsFilter.includes(+card.userId) ||
+          (card.date.time >= this.datesFilter[0] && card.date.time <= this.datesFilter[1]));
+      }
     }
   },
+  methods: {
+    upFirstLetter(str) {
+      return str[0].toUpperCase() + str.slice(1);
+    },
+    handleChange(authors) {
+      this.authorsFilter = authors;
+    },
+    onChange(dates) {
+      this.datesFilter = dates.map(date => moment(date).toDate().setHours(0, 0, 0, 0));
+    }
+  }
 };
+
+function generateRandomDate(startTime) {
+  const time = new Date(startTime + Math.random() * (new Date().getTime() - startTime)).setHours(0, 0, 0, 0);
+  const dtFormat = new Intl.DateTimeFormat('ru', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  return {
+    time: time,
+    format: dtFormat.format(time).slice(0, -3)
+  };
+}
 </script>
 
 <style scoped lang="scss">
@@ -106,41 +152,52 @@ export default {
 
   .cards-list {
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     width: $cards-container-width;
     margin-top: 24px;
 
-    .cards__item {
+    .cards-list__item {
       width: 295px;
-      height: 258px;
       font-weight: $font-regular;
 
       ::v-deep .ant-card-head-title {
         font-weight: $font-semi-bold;
       }
 
-      p {
-        line-height: 20px;
+      ::v-deep .ant-card-body {
+        height: 204px;
       }
 
-      .badges-container {
+      .card-body {
         display: flex;
-        justify-content: flex-start;
-        gap: 10px;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
 
-        .card-name {
-          ::v-deep .ant-badge-count {
-            background: #092433;
-          }
+        p {
+          overflow: hidden;
+          text-overflow: clip;
+          line-height: 20px;
         }
 
-        .card-date {
-          ::v-deep .ant-badge-count {
-            background: white;
-            color: #595959;
-            box-shadow: 0 0 0 1px #d9d9d9 inset;
+        .badges-container {
+          display: flex;
+          justify-content: flex-start;
+          gap: 10px;
+
+          .card-name {
+            ::v-deep .ant-badge-count {
+              background: #092433;
+            }
+          }
+
+          .card-date {
+            ::v-deep .ant-badge-count {
+              background: white;
+              color: #595959;
+              box-shadow: 0 0 0 1px #d9d9d9 inset;
+            }
           }
         }
       }

@@ -124,7 +124,7 @@
     .footer-socials {
       grid-area: footer-socials;
       display: flex;
-      align-items: end;
+      align-items: flex-end;
       justify-content: space-between;
       @include reset-list;
     }
