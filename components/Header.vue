@@ -1,9 +1,9 @@
 <template>
   <div class="header-container container">
     <div class="header__logo">
-      <a href="/">
+      <nuxt-link to="/">
         <img src="~/assets/img/selectel-logo-header.svg" alt="Selectel">
-      </a>
+      </nuxt-link>
     </div>
     <div class="header-contacts">
       <a class="header-contacts__phone" href="tel:88005550675">
@@ -42,6 +42,10 @@
     justify-content: flex-end;
 
     @include reset-link-color($header-contacts-color, $header-contacts-opacity);
+
+    p {
+      @include reset-margins();
+    }
 
     .header-contacts__phone {
       margin-right: $header-phone-margin;

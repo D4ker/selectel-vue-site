@@ -93,7 +93,7 @@ export default {
     }
 
     @media (max-width: $small-resolution) {
-      max-width: 310px;
+      max-width: 295px;
     }
   }
 
@@ -154,7 +154,6 @@ export default {
   .cards-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(295px, auto));
-
     gap: 20px;
     margin-top: 24px;
 

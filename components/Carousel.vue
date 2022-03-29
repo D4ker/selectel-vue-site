@@ -54,23 +54,23 @@
     }
 
     .carousel-title {
-      font-size: 2em;
+      font-size: 2rem;
       margin-bottom: 24px;
 
       @media (max-width: $small-resolution) {
-        font-size: 20px;
+        font-size: 1.25rem;
         margin-bottom: 10px;
       }
     }
 
     .carousel-description {
-      width: 453px;
+      max-width: 453px;
       font-weight: $font-regular;
-      font-size: 16px;
+      font-size: 1rem;
       margin: 0;
 
       @media (max-width: $small-resolution) {
-        font-size: 14px;
+        font-size: 0.875rem;
       }
     }
   }

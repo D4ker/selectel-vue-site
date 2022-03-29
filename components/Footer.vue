@@ -2,69 +2,65 @@
   <div class="footer-container container">
     <div class="footer-info">
       <div class="footer-info__logo">
-        <a href="/">
+        <nuxt-link to="/">
           <img src="~/assets/img/selectel-logo-footer.svg" alt="Selectel">
-        </a>
+        </nuxt-link>
       </div>
       <div class="footer-info__copyright">
         <p>© ООО «Селектел», 2008—2022</p>
-        <p>
-          Лицензия на телематические
-          <br>
-          услуги №176267
-        </p>
+        <p>Лицензия на телематические услуги №176267</p>
       </div>
     </div>
     <div class="footer-menu">
       <ul class="footer-nav">
         <li class="footer-nav__item">
-          <a href="/">Серверы</a>
+          <nuxt-link to="/servers">Серверы</nuxt-link>
         </li>
         <li class="footer-nav__item">
-          <a href="/">Оборудование</a>
+          <nuxt-link to="/equipment">Оборудование</nuxt-link>
         </li>
         <li class="footer-nav__item">
-          <a href="/">Дата-центры</a>
+          <nuxt-link to="/data-centers">Дата-центры</nuxt-link>
         </li>
         <li class="footer-nav__item">
-          <a href="/">Блог</a>
+          <nuxt-link to="/blog">Блог</nuxt-link>
         </li>
         <li class="footer-nav__item">
-          <a href="/">Облако</a>
+          <nuxt-link to="/cloud">Облако</nuxt-link>
         </li>
         <li class="footer-nav__item">
-          <a href="/">Решения</a>
+          <nuxt-link to="/solutions">Решения</nuxt-link>
         </li>
         <li class="footer-nav__item">
-          <a href="/">О компании</a>
+          <nuxt-link to="/about">О компании</nuxt-link>
         </li>
         <li class="footer-nav__item">
-          <a href="/">Офисы</a>
+          <nuxt-link to="/offices">Офисы</nuxt-link>
         </li>
       </ul>
       <ul class="footer-socials">
         <li class="footer-socials__item">
-          <a href="https://t.me/selectel">
+          <a href="https://t.me/selectel" target="_blank">
             <img src="~/assets/img/telegram.svg" alt="Telegram">
           </a>
         </li>
         <li class="footer-socials__item">
-          <a href="https://www.facebook.com/selectel">
+          <a href="https://www.facebook.com/selectel" target="_blank">
             <img src="~/assets/img/facebook.svg" alt="Facebook">
           </a>
         </li>
         <li class="footer-socials__item">
-          <a href="https://vk.com/selectel">
+          <a href="https://vk.com/selectel" target="_blank">
             <img src="~/assets/img/vk.svg" alt="VK">
           </a>
         </li>
         <li class="footer-socials__item">
-          <a href="https://twitter.com/selectel">
+          <a href="https://twitter.com/selectel" target="_blank">
             <img src="~/assets/img/twitter.svg" alt="Twitter">
           </a>
         </li>
         <li class="footer-socials__item">
-          <a href="https://habr.com/ru/company/selectel">
+          <a href="https://habr.com/ru/company/selectel" target="_blank">
             <img src="~/assets/img/habr.svg" alt="Habr">
           </a>
         </li>
@@ -108,6 +104,7 @@
       font-weight: $font-regular;
       color: $footer-copyright-color;
       opacity: $footer-copyright-opacity;
+      max-width: 220px;
 
       p {
         @include reset-margins;
