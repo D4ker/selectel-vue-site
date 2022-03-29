@@ -10,7 +10,7 @@
                   :getPopupContainer="trigger => trigger.parentNode"
                   @change="handleChange">
           <a-icon slot="suffixIcon" type="user"/>
-          <a-select-option v-for="author of authors" :key="author.id" :value="author.id">
+          <a-select-option v-for="author of cards.authors" :key="author.id" :value="author.id">
             {{ author.name }}
           </a-select-option>
         </a-select>
@@ -39,27 +39,25 @@
 import moment from "moment";
 
 export default {
+  async fetch() {
+    await this.$store.dispatch('cards/fetch');
+  },
   data: () => ({
-    authors: [],
-    cards: [],
     authorsFilter: [],
     datesFilter: []
   }),
-  async mounted() {
-    this.authors = await this.$axios.$get('https://jsonplaceholder.typicode.com/users');
-
-    this.cards = await this.$axios.$get('https://jsonplaceholder.typicode.com/posts');
-    this.cards.forEach(card => {
-      card.author = this.authors[+card.userId - 1].name;
-      card.date = generateRandomDate(new Date(2008, 7, 8).getTime());
-    });
-  },
   computed: {
+    cards() {
+      return {
+        authors: this.$store.getters['cards/authors'],
+        data: this.$store.getters['cards/cards']
+      }
+    },
     filteredCards() {
       if (!this.authorsFilter.length && !this.datesFilter.length) {
-        return this.cards;
+        return this.cards.data;
       }
-      return this.cards.filter(card => {
+      return this.cards.data.filter(card => {
         const isFilteredAuthor = this.authorsFilter.includes(+card.userId);
         const isDateInFilteredRange = card.date.time >= this.datesFilter[0] && card.date.time <= this.datesFilter[1];
         return (isFilteredAuthor && isDateInFilteredRange) || (isFilteredAuthor && !this.datesFilter.length) ||
@@ -79,19 +77,6 @@ export default {
     }
   }
 };
-
-function generateRandomDate(startTime) {
-  const time = new Date(startTime + Math.random() * (new Date().getTime() - startTime)).setHours(0, 0, 0, 0);
-  const dtFormat = new Intl.DateTimeFormat('ru', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-  return {
-    time: time,
-    format: dtFormat.format(time).slice(0, -3)
-  };
-}
 </script>
 
 <style scoped lang="scss">
