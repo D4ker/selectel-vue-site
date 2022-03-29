@@ -84,8 +84,17 @@ export default {
   margin: 60px auto;
 
   .cards-sub-container {
-    width: $cards-container-width;
+    width: 100%;
+    max-width: $cards-container-width;
     margin: 0 auto;
+
+    @media (max-width: $large-resolution) {
+      max-width: $small-resolution;
+    }
+
+    @media (max-width: $small-resolution) {
+      max-width: 310px;
+    }
   }
 
   .cards-filter {
@@ -95,12 +104,17 @@ export default {
     display: flex;
     align-items: center;
     font-weight: $font-regular;
-    height: $cards-filter-height;
+    min-height: $cards-filter-height;
     background-color: $cards-filter-bg;
+
+    @media (max-width: $small-resolution) {
+      padding: 15px;
+    }
 
     .cards-filter-container {
       position: relative;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       column-gap: 20px;
 
@@ -120,6 +134,10 @@ export default {
       .cards-filter-range {
         width: 331px;
 
+        @media (max-width: $large-resolution) {
+          width: 295px;
+        }
+
         ::v-deep .ant-calendar-picker-input {
           .ant-calendar-range-picker-input {
             text-align: left;
@@ -135,9 +153,9 @@ export default {
 
   .cards-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(295px, auto));
+
     gap: 20px;
-    width: $cards-container-width;
     margin-top: 24px;
 
     .cards-list__item {

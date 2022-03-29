@@ -21,26 +21,46 @@
 .ant-carousel {
   ::v-deep .slick-slide {
     height: 546px;
+
+    @media (max-width: $small-resolution) {
+      height: 280px;
+    }
   }
 }
 
 .carousel__item {
+  position: relative;
+
   img {
     position: relative;
     width: 100%;
     height: 546px;
     object-fit: cover;
+
+    @media (max-width: $small-resolution) {
+      height: 280px;
+    }
   }
 
   .carousel-info {
     position: absolute;
     bottom: 0;
-    margin: 0 0 100px 258px;
+    width: 100%;
+    margin: 0 0 7% 18%;
     color: white;
+
+    @media (max-width: $small-resolution) {
+      margin: 0 0 10% 2%;
+    }
 
     .carousel-title {
       font-size: 2em;
       margin-bottom: 24px;
+
+      @media (max-width: $small-resolution) {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
     }
 
     .carousel-description {
@@ -48,6 +68,10 @@
       font-weight: $font-regular;
       font-size: 16px;
       margin: 0;
+
+      @media (max-width: $small-resolution) {
+        font-size: 14px;
+      }
     }
   }
 }

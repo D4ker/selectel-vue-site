@@ -2,10 +2,15 @@ $font-regular: 400;
 $font-medium: 500;
 $font-semi-bold: 600;
 
+$large-resolution: 1080px;
+$medium-resolution: 800px;
+$small-resolution: 610px;
+
 $container-width: 1440px;
 
 $header-height: 88px;
 $header-padding: 0 138px;
+$header-padding-medium: 0 15px;
 $header-bg: white;
 $header-contacts-color: black;
 $header-contacts-opacity: 0.65;
