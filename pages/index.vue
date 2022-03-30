@@ -1,30 +1,22 @@
 <template>
-  <div class="main-container">
+  <div class="main__container">
     <section class="carousel">
-      <Carousel/>
+      <SectionCarousel />
     </section>
     <section class="cards">
-      <CardsSection/>
+      <SectionCards />
     </section>
   </div>
 </template>
 
 <script>
-import Carousel from '@/components/Carousel';
-import CardsSection from '@/components/CardsSection';
+import SectionCarousel from '@/components/SectionCarousel';
+import SectionCards from '@/components/SectionCards';
 
 export default {
   components: {
-    Carousel,
-    CardsSection
+    SectionCarousel,
+    SectionCards
   }
 }
 </script>
-
-<style lang="scss">
-.container {
-  width: 100%;
-  max-width: $container-width;
-  margin: 0 auto;
-}
-</style>

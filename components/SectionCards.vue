@@ -1,8 +1,8 @@
 <template>
-  <div class="cards-container">
+  <div class="cards__container">
     <div class="cards-filter">
-      <div class="cards-filter-container cards-sub-container">
-        <a-select class="cards-filter-author"
+      <div class="cards-filter__container cards__sub-container">
+        <a-select class="cards-filter__author"
                   mode="multiple"
                   placeholder="Выберите автора"
                   :showArrow="true"
@@ -14,20 +14,20 @@
             {{ author.name }}
           </a-select-option>
         </a-select>
-        <a-range-picker class="cards-filter-range"
+        <a-range-picker class="cards-filter__range"
                         :size="'large'"
                         :placeholder="['От', 'До']"
                         :getCalendarContainer="trigger => trigger.parentNode"
                         @change="onChange"/>
       </div>
     </div>
-    <div class="cards-list cards-sub-container">
-      <a-card v-for="card of filteredCards" :key="card.id" class="cards-list__item" :title="upFirstLetter(card.title)">
-        <div class="card-body">
+    <div class="cards-list cards__sub-container">
+      <a-card v-for="card of filteredCards" :key="card.id" class="card" :title="upFirstLetter(card.title)">
+        <div class="card__body">
           <p>{{ upFirstLetter(card.body) }}</p>
-          <div class="badges-container">
-            <a-badge class="card-author" :count="card.author"/>
-            <a-badge class="card-date" :count="card.date.format"/>
+          <div class="card__badges">
+            <a-badge class="card__author" :count="card.author"/>
+            <a-badge class="card__date" :count="card.date.format"/>
           </div>
         </div>
       </a-card>
@@ -80,10 +80,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.cards-container {
+.cards__container {
   margin: 60px auto;
 
-  .cards-sub-container {
+  .cards__sub-container {
     width: 100%;
     max-width: $cards-container-width;
     margin: 0 auto;
@@ -111,14 +111,14 @@ export default {
       padding: 15px;
     }
 
-    .cards-filter-container {
+    .cards-filter__container {
       position: relative;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       column-gap: 20px;
 
-      .cards-filter-author {
+      .cards-filter__author {
         width: 295px;
 
         ::v-deep .ant-select-selection--multiple {
@@ -131,7 +131,7 @@ export default {
         }
       }
 
-      .cards-filter-range {
+      .cards-filter__range {
         width: 331px;
 
         @media (max-width: $large-resolution) {
@@ -157,7 +157,7 @@ export default {
     gap: 20px;
     margin-top: 24px;
 
-    .cards-list__item {
+    .card {
       width: 295px;
       font-weight: $font-regular;
 
@@ -169,7 +169,7 @@ export default {
         height: 204px;
       }
 
-      .card-body {
+      .card__body {
         display: flex;
         height: 100%;
         flex-direction: column;
@@ -181,18 +181,18 @@ export default {
           line-height: 20px;
         }
 
-        .badges-container {
+        .card__badges {
           display: flex;
           justify-content: flex-start;
           gap: 10px;
 
-          .card-author {
+          .card__author {
             ::v-deep .ant-badge-count {
               background: #092433;
             }
           }
 
-          .card-date {
+          .card__date {
             ::v-deep .ant-badge-count {
               background: white;
               color: #595959;

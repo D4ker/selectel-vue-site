@@ -1,25 +1,25 @@
 <template>
   <div class="layout">
     <header class="header">
-      <Header/>
+      <TheHeader />
     </header>
     <main class="main">
-      <nuxt/>
+      <nuxt />
     </main>
     <footer class="footer">
-      <Footer/>
+      <TheFooter />
     </footer>
   </div>
 </template>
 
 <script>
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import TheHeader from '@/components/TheHeader';
+import TheFooter from '@/components/TheFooter';
 
 export default {
   components: {
-    Header,
-    Footer
+    TheHeader,
+    TheFooter
   }
 }
 </script>
@@ -31,6 +31,12 @@ html {
   body {
     font-weight: $font-medium;
   }
+}
+
+.container {
+  width: 100%;
+  max-width: $container-width;
+  margin: 0 auto;
 }
 
 .layout {

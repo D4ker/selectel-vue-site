@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <a-carousel>
-      <div v-for="carouselImgId in 3" class="carousel__item">
+      <div v-for="carouselImgId in 3" :key="carouselImgId" class="carousel__item">
         <img src="~/assets/img/carousel-item.png" alt="Carousel Item">
-        <div class="carousel-info">
-          <p class="carousel-title">IT-инфраструктура для бизнеса</p>
-          <p class="carousel-description">
+        <div class="carousel__info">
+          <p class="carousel__title">IT-инфраструктура для бизнеса</p>
+          <p class="carousel__description">
             Мы предлагаем комплексные решения для всех уровней
             бизнеса: от индивидуальных предпринимателей до крупных
             международных компаний. Более 20 000 клиентов по всему
@@ -42,7 +42,7 @@
     }
   }
 
-  .carousel-info {
+  .carousel__info {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -53,7 +53,7 @@
       margin: 0 0 10% 2%;
     }
 
-    .carousel-title {
+    .carousel__title {
       font-size: 2rem;
       margin-bottom: 24px;
 
@@ -63,7 +63,7 @@
       }
     }
 
-    .carousel-description {
+    .carousel__description {
       max-width: 453px;
       font-weight: $font-regular;
       font-size: 1rem;

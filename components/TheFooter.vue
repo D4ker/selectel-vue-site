@@ -1,65 +1,65 @@
 <template>
-  <div class="footer-container container">
-    <div class="footer-info">
-      <div class="footer-info__logo">
+  <div class="footer__container container">
+    <div class="footer__info">
+      <div class="footer__logo">
         <nuxt-link to="/">
           <img src="~/assets/img/selectel-logo-footer.svg" alt="Selectel">
         </nuxt-link>
       </div>
-      <div class="footer-info__copyright">
+      <div class="footer__copyright">
         <p>© ООО «Селектел», 2008—2022</p>
         <p>Лицензия на телематические услуги №176267</p>
       </div>
     </div>
-    <div class="footer-menu">
-      <ul class="footer-nav">
-        <li class="footer-nav__item">
+    <div class="footer__menu">
+      <ul class="footer__nav">
+        <li class="footer__nav-item">
           <nuxt-link to="/servers">Серверы</nuxt-link>
         </li>
-        <li class="footer-nav__item">
+        <li class="footer__nav-item">
           <nuxt-link to="/equipment">Оборудование</nuxt-link>
         </li>
-        <li class="footer-nav__item">
+        <li class="footer__nav-item">
           <nuxt-link to="/data-centers">Дата-центры</nuxt-link>
         </li>
-        <li class="footer-nav__item">
+        <li class="footer__nav-item">
           <nuxt-link to="/blog">Блог</nuxt-link>
         </li>
-        <li class="footer-nav__item">
+        <li class="footer__nav-item">
           <nuxt-link to="/cloud">Облако</nuxt-link>
         </li>
-        <li class="footer-nav__item">
+        <li class="footer__nav-item">
           <nuxt-link to="/solutions">Решения</nuxt-link>
         </li>
-        <li class="footer-nav__item">
+        <li class="footer__nav-item">
           <nuxt-link to="/about">О компании</nuxt-link>
         </li>
-        <li class="footer-nav__item">
+        <li class="footer__nav-item">
           <nuxt-link to="/offices">Офисы</nuxt-link>
         </li>
       </ul>
-      <ul class="footer-socials">
-        <li class="footer-socials__item">
+      <ul class="footer__socials">
+        <li class="footer__socials-item">
           <a href="https://t.me/selectel" target="_blank">
             <img src="~/assets/img/telegram.svg" alt="Telegram">
           </a>
         </li>
-        <li class="footer-socials__item">
+        <li class="footer__socials-item">
           <a href="https://www.facebook.com/selectel" target="_blank">
             <img src="~/assets/img/facebook.svg" alt="Facebook">
           </a>
         </li>
-        <li class="footer-socials__item">
+        <li class="footer__socials-item">
           <a href="https://vk.com/selectel" target="_blank">
             <img src="~/assets/img/vk.svg" alt="VK">
           </a>
         </li>
-        <li class="footer-socials__item">
+        <li class="footer__socials-item">
           <a href="https://twitter.com/selectel" target="_blank">
             <img src="~/assets/img/twitter.svg" alt="Twitter">
           </a>
         </li>
-        <li class="footer-socials__item">
+        <li class="footer__socials-item">
           <a href="https://habr.com/ru/company/selectel" target="_blank">
             <img src="~/assets/img/habr.svg" alt="Habr">
           </a>
@@ -70,7 +70,7 @@
 </template>
 
 <style scoped lang="scss">
-.footer-container {
+.footer__container {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
@@ -89,7 +89,7 @@
     padding: 30px 15px;
   }
 
-  .footer-info {
+  .footer__info {
     display: flex;
     width: $footer-info-width;
     height: 100%;
@@ -100,7 +100,7 @@
       order: 1;
     }
 
-    .footer-info__copyright {
+    .footer__copyright {
       font-weight: $font-regular;
       color: $footer-copyright-color;
       opacity: $footer-copyright-opacity;
@@ -112,7 +112,7 @@
     }
   }
 
-  .footer-menu {
+  .footer__menu {
     display: grid;
     height: 100%;
     grid-template-areas: "footer-nav footer-nav footer-nav footer-nav"
@@ -121,7 +121,7 @@
     grid-template-columns: repeat(4, 1fr);
     width: 100%;
 
-    .footer-nav {
+    .footer__nav {
       grid-area: footer-nav;
       display: grid;
       grid-template-rows: repeat(2, 1fr);
@@ -141,7 +141,7 @@
       @include reset-list;
     }
 
-    .footer-socials {
+    .footer__socials {
       grid-area: footer-socials;
       display: flex;
       align-items: flex-end;
