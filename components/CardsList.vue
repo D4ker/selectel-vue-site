@@ -91,6 +91,10 @@ export default {
       }
 
       .card__badges {
+        display: grid;
+        grid-template-columns: minmax(50px, auto) auto;
+        justify-content: start;
+
         .card__author {
           margin-right: 10px;
 
