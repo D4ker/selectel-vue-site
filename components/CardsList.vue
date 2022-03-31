@@ -1,5 +1,6 @@
 <template>
-  <div class="cards-list cards__sub-container">
+  <CardsListSkeleton v-if="cardsIsLoaded"/>
+  <div v-else class="cards-list cards__sub-container">
     <a-card v-for="card of filteredCards" :key="card.id" class="card" :title="upFirstLetter(card.title)">
       <div class="card__body">
         <p>{{ upFirstLetter(card.body) }}</p>
@@ -13,6 +14,8 @@
 </template>
 
 <script>
+import CardsListSkeleton from '@/components/CardsListSkeleton';
+
 export default {
   props: {
     authorsFilter: {
@@ -22,7 +25,14 @@ export default {
     datesFilter: {
       type: Array,
       required: true
+    },
+    cardsIsLoaded: {
+      type: Boolean,
+      required: true
     }
+  },
+  components: {
+    CardsListSkeleton
   },
   computed: {
     cards() {

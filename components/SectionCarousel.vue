@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <a-carousel>
+    <SectionCarouselSkeleton v-if="carouselIsLoaded"/>
+    <a-carousel v-else>
       <div v-for="carouselImgId in 3" :key="carouselImgId" class="carousel__item">
         <img src="~/assets/img/carousel-item.png" alt="Carousel Item">
         <div class="carousel__info">
@@ -19,13 +20,29 @@
   </div>
 </template>
 
+<script>
+import SectionCarouselSkeleton from '@/components/SectionCarouselSkeleton';
+
+export default {
+  components: {
+    SectionCarouselSkeleton
+  },
+  data: () => ({
+    carouselIsLoaded: true
+  }),
+  mounted() {
+    this.carouselIsLoaded = false;
+  }
+}
+</script>
+
 <style scoped lang="scss">
 .ant-carousel {
   ::v-deep .slick-slide {
     width: 100%;
     height: 100%;
-    min-height: 280px;
-    max-height: 546px;
+    min-height: $carousel-height-mobile;
+    max-height: $carousel-height;
   }
 }
 
@@ -35,8 +52,8 @@
   img {
     width: 100%;
     height: 100%;
-    min-height: 280px;
-    max-height: 546px;
+    min-height: $carousel-height-mobile;
+    max-height: $carousel-height;
     object-fit: cover;
   }
 

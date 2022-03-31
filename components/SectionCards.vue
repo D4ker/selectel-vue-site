@@ -3,24 +3,21 @@
     <CardsFilter
       @authorsFilter="(recAuthorsFilter) => this.authorsFilter = recAuthorsFilter"
       @datesFilter="(recDatesFilterV) => this.datesFilter = recDatesFilterV"/>
-    <CardsListSkeleton v-if="cardsIsLoaded"/>
     <CardsList
-      v-else
       :authorsFilter="authorsFilter"
-      :datesFilter="datesFilter"/>
+      :datesFilter="datesFilter"
+      :cardsIsLoaded="cardsIsLoaded"/>
   </div>
 </template>
 
 <script>
 import CardsFilter from '@/components/CardsFilter';
 import CardsList from '@/components/CardsList';
-import CardsListSkeleton from '@/components/CardsListSkeleton';
 
 export default {
   components: {
     CardsFilter,
-    CardsList,
-    CardsListSkeleton
+    CardsList
   },
   data: () => ({
     authorsFilter: [],
@@ -28,7 +25,9 @@ export default {
     cardsIsLoaded: true
   }),
   async fetch() {
-    await this.$store.dispatch('cards/fetch');
+    if (this.$store.getters['cards/cards'].length === 0) {
+      await this.$store.dispatch('cards/fetch');
+    }
     this.cardsIsLoaded = false;
   }
 };
