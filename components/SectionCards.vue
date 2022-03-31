@@ -83,17 +83,18 @@ export default {
 .cards__container {
   margin: 60px auto;
 
+  @media (max-width: $small-resolution) {
+    margin: 32px auto;
+  }
+
   .cards__sub-container {
     width: 100%;
     max-width: $cards-container-width;
     margin: 0 auto;
 
-    @media (max-width: $large-resolution) {
-      max-width: $small-resolution;
-    }
-
     @media (max-width: $small-resolution) {
-      max-width: 295px;
+      max-width: $cards-item-width-mobile;
+      padding: 16px 15px;
     }
   }
 
@@ -105,24 +106,33 @@ export default {
     align-items: center;
     font-weight: $font-regular;
     min-height: $cards-filter-height;
-    background-color: $cards-filter-bg;
+    background-color: white;
 
     @media (max-width: $small-resolution) {
-      padding: 15px;
+      top: $header-height-mobile;
     }
 
     .cards-filter__container {
       position: relative;
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       column-gap: 20px;
+      row-gap: 12px;
+
+      @media (max-width: $cards-container-width) {
+        justify-content: center;
+      }
 
       .cards-filter__author {
-        width: 295px;
+        width: 100%;
+        max-width: $cards-item-width;
+
+        @media (max-width: $small-resolution) {
+          max-width: $cards-item-width-mobile;
+        }
 
         ::v-deep .ant-select-selection--multiple {
-          height: 41px;
+          max-height: 41px;
           overflow-x: auto;
 
           .ant-select-arrow {
@@ -132,10 +142,15 @@ export default {
       }
 
       .cards-filter__range {
-        width: 331px;
+        width: 100%;
+        max-width: 331px;
 
-        @media (max-width: $large-resolution) {
-          width: 295px;
+        @media (max-width: $cards-container-width) {
+          max-width: $cards-item-width;
+        }
+
+        @media (max-width: $small-resolution) {
+          max-width: $cards-item-width-mobile;
         }
 
         ::v-deep .ant-calendar-picker-input {
@@ -153,20 +168,31 @@ export default {
 
   .cards-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(295px, auto));
+    grid-template-columns: repeat(auto-fit, minmax($cards-item-width, auto));
     gap: 20px;
     margin-top: 24px;
+    justify-content: center;
+
+    @media (max-width: $small-resolution) {
+      gap: 10px;
+      margin-top: 16px;
+    }
 
     .card {
-      width: 295px;
       font-weight: $font-regular;
+      max-width: $cards-item-width;
+
+      @media (max-width: $small-resolution) {
+        max-width: $cards-item-width-mobile;
+      }
 
       ::v-deep .ant-card-head-title {
         font-weight: $font-semi-bold;
       }
 
       ::v-deep .ant-card-body {
-        height: 204px;
+        height: 200px;
+        max-width: $cards-item-width;
       }
 
       .card__body {
@@ -182,20 +208,18 @@ export default {
         }
 
         .card__badges {
-          display: flex;
-          justify-content: flex-start;
-          gap: 10px;
-
           .card__author {
+            margin-right: 10px;
+
             ::v-deep .ant-badge-count {
-              background: #092433;
+              background: $color-blue;
             }
           }
 
           .card__date {
             ::v-deep .ant-badge-count {
               background: white;
-              color: #595959;
+              color: $color-gray;
               box-shadow: 0 0 0 1px #d9d9d9 inset;
             }
           }

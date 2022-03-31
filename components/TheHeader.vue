@@ -1,19 +1,21 @@
 <template>
-  <div class="header__container container">
-    <div class="header__logo">
-      <nuxt-link to="/">
-        <img src="~/assets/img/selectel-logo-header.svg" alt="Selectel">
-      </nuxt-link>
-    </div>
-    <div class="header__contacts">
-      <a class="header__phone" href="tel:88005550675">
-        <p class="header__contacts_large">8 800 555 06 75</p>
-        <a-icon class="header__contacts_small" type="phone" theme="filled" />
-      </a>
-      <a href="mailto:sales@selectel.ru">
-        <p class="header__contacts_large">sales@selectel.ru</p>
-        <a-icon class="header__contacts_small" type="mail" />
-      </a>
+  <div class="container">
+    <div class="header__container">
+      <div class="header__logo">
+        <nuxt-link to="/">
+          <img src="~/assets/img/selectel-logo-header.svg" alt="Selectel">
+        </nuxt-link>
+      </div>
+      <div class="header__contacts">
+        <a class="header__phone" href="tel:88005550675">
+          <p class="header__phone_text">8 800 555 06 75</p>
+          <img class="header__phone_icon" src="~/assets/img/phone.svg" alt="phone">
+        </a>
+        <a href="mailto:sales@selectel.ru">
+          <p class="header__mail_text">sales@selectel.ru</p>
+          <img class="header__mail_icon" src="~/assets/img/mail.svg" alt="mail">
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -21,48 +23,51 @@
 <style scoped lang="scss">
 .header__container {
   display: grid;
-  grid-template-areas: "header-logo header-contacts";
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, auto);
   align-items: center;
-  height: 100%;
+  justify-content: space-between;
+  width: $header-container-width;
+  height: $header-height;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
   padding: $header-padding;
 
-  @media (max-width: $medium-resolution) {
-    padding: $header-padding-medium;
-  }
-
-  .header__logo {
-    grid-area: header-logo;
-    box-sizing: border-box;
+  @media (max-width: $small-resolution) {
+    height: $header-height-mobile;
   }
 
   .header__contacts {
-    grid-area: header-contacts;
     display: flex;
-    justify-content: flex-end;
 
-    @include reset-link-color($header-contacts-color, $header-contacts-opacity);
+    a {
+      color: $color-black;
 
-    p {
-      @include reset-margins();
+      p {
+        @include reset-margins();
+      }
     }
 
     .header__phone {
-      margin-right: $header-phone-margin;
+      margin-right: 16px;
+
+      .header__phone_text {
+        margin-right: 32px;
+      }
     }
 
-    .header__contacts_small {
+    .header__phone_icon, .header__mail_icon {
       display: none;
 
-      @media (max-width: $medium-resolution) {
+      @media (max-width: $small-resolution) {
         display: block;
       }
     }
 
-    .header__contacts_large {
+    .header__phone_text, .header__mail_text {
       display: block;
 
-      @media (max-width: $medium-resolution) {
+      @media (max-width: $small-resolution) {
         display: none;
       }
     }

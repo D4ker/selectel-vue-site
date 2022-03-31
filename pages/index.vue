@@ -1,10 +1,10 @@
 <template>
   <div class="main__container">
     <section class="carousel">
-      <SectionCarousel />
+      <SectionCarousel/>
     </section>
     <section class="cards">
-      <SectionCards />
+      <SectionCards/>
     </section>
   </div>
 </template>

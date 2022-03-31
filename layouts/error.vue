@@ -5,16 +5,6 @@
   </section>
 </template>
 
-<style lang="scss">
-html {
-  font-family: Manrope, sans-serif;
-
-  body {
-    font-weight: $font-medium;
-  }
-}
-</style>
-
 <style scoped lang="scss">
 section {
   margin: 0 auto;
@@ -22,6 +12,6 @@ section {
 }
 
 h1 {
-  color: $header-contacts-color;
+  color: $color-black;
 }
 </style>

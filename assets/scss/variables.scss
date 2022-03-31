@@ -2,29 +2,36 @@ $font-regular: 400;
 $font-medium: 500;
 $font-semi-bold: 600;
 
+$color-black: #000000A5;
+$color-blue: #092433;
+$color-gray: #595959;
+$color-white: #FFFFFFCC;
+
 $large-resolution: 1080px;
 $medium-resolution: 800px;
 $small-resolution: 610px;
 
-$container-width: 1440px;
+$container-width-max: 1440px;
+$container-width-min: 390px;
 
 $header-height: 88px;
-$header-padding: 0 138px;
-$header-padding-medium: 0 15px;
-$header-bg: white;
-$header-contacts-color: black;
-$header-contacts-opacity: 0.65;
-$header-phone-margin: 48px;
+$header-padding: 0 15px;
+$header-container-width: 1194px;
+
+$header-height-mobile: 56px;
 
 $footer-height: 321px;
 $footer-padding: 80px 20px;
-$footer-bg: #092433;
 $footer-info-width: 324px;
-$footer-copyright-color: white;
-$footer-copyright-opacity: 0.8;
-$footer-nav-color: white;
+$footer-nav-width: 788px;
 
-$cards-container-width: 925px;
-$cards-filter-bg: white;
+$footer-height-mobile: 397px;
+$footer-padding-mobile: 32px 15px;
+
+$carousel-height: 546px;
+
+$cards-item-width: 295px;
+$cards-container-width: $cards-item-width * 3 + 40px;
 $cards-filter-height: 72px;
 
+$cards-item-width-mobile: 359px;

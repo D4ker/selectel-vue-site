@@ -1,13 +1,13 @@
 <template>
   <div class="layout">
     <header class="header">
-      <TheHeader />
+      <TheHeader/>
     </header>
     <main class="main">
-      <nuxt />
+      <nuxt/>
     </main>
     <footer class="footer">
-      <TheFooter />
+      <TheFooter/>
     </footer>
   </div>
 </template>
@@ -25,20 +25,19 @@ export default {
 </script>
 
 <style lang="scss">
-html {
+body {
   font-family: Manrope, sans-serif;
-
-  body {
-    font-weight: $font-medium;
-  }
+  font-weight: $font-medium;
 }
 
 .container {
   width: 100%;
-  max-width: $container-width;
+  max-width: $container-width-max;
   margin: 0 auto;
 }
+</style>
 
+<style scoped lang="scss">
 .layout {
   display: flex;
   flex-direction: column;
@@ -47,10 +46,8 @@ html {
   .header {
     position: sticky;
     top: 0;
-    width: 100%;
-    height: $header-height;
     z-index: 999;
-    background-color: $header-bg;
+    background-color: white;
   }
 
   .main {
@@ -58,8 +55,7 @@ html {
   }
 
   .footer {
-    width: 100%;
-    background-color: $footer-bg;
+    background-color: $color-blue;
   }
 }
 </style>
